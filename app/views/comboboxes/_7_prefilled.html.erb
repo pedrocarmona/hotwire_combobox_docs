@@ -1,8 +1,8 @@
 <%= article do %>
-  <%= render layout: "header", locals: { title: "A prefilled combobox" } do %>
+  <%= render layout: "header", locals: { title: "A prefilled html combobox" } do %>
     <div>
       <%= form_with model: @user, url: user_url(@user) do |form| %>
-        <%= form.combobox :favorite_movie_id, Movie.all %>
+        <%= form.combobox :favorite_movie_id, Movie.all, render_in: { partial: "movies/movie" } %>
       <% end %>
     </div>
   <% end %>
@@ -22,7 +22,8 @@
     <%=
       highlight_erb(%(
         &lt;%= form_with model: @user, url: user_url(@user) do |form| %&gt;
-          &lt;%= form.combobox :favorite_movie_id, Movie.all %&gt;
+          &lt;%= form.combobox :favorite_movie_id, Movie.all,
+            render_in: { partial: "movies/movie" } %&gt;
         &lt;% end %&gt;
       ))
     %>
